@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agoitz Ezkerra Berasategi — Desarrollador Full-Stack &amp; Administrador de Sistemas</title>
+<meta name="description" content="Portfolio de Agoitz Ezkerra Berasategi: desarrollador full-stack con base en administración de sistemas. PHP, Laravel, Spring Boot, Angular, React, MySQL, AWS." />
+<meta name="theme-color" content="#10151B" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%2310151B'/%3E%3Ctext%20x='16'%20y='23'%20font-family='monospace'%20font-size='18'%20font-weight='700'%20fill='%23EDA94C'%20text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Agoitz Ezkerra Berasategi — Desarrollador Full-Stack & Administrador de Sistemas" />
+<meta property="og:description" content="Portfolio de Agoitz Ezkerra Berasategi: desarrollador full-stack con base en administración de sistemas. PHP, Laravel, Spring Boot, Angular, React, MySQL, AWS." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1EF;
+    --bg-card:#FFFFFF;
+    --bg-raised:#F7F8F6;
+    --ink:#141A1C;
+    --ink-soft:#4C575F;
+    --ink-faint:#8B949B;
+    --line:#DCE1DA;
+    --accent:#C9821F;
+    --accent-text:#8A4E12;
+    --accent-ink:#181206;
+    --ok:#1F7A63;
+    --radius-sm:6px;
+    --radius:12px;
+    --maxw:1140px;
+    --font-display:'IBM Plex Sans','Segoe UI',sans-serif;
+    --font-body:'IBM Plex Serif',Georgia,serif;
+    --font-mono:'JetBrains Mono','Courier New',monospace;
+    --shadow:0 1px 2px rgba(20,26,28,.05), 0 10px 30px -14px rgba(20,26,28,.16);
+  }
+  html[data-theme="dark"]{
+    --bg:#10151B;
+    --bg-card:#161D24;
+    --bg-raised:#1B232B;
+    --ink:#EDF0EE;
+    --ink-soft:#A7B0B6;
+    --ink-faint:#5E6870;
+    --line:#242E37;
+    --accent:#EDA94C;
+    --accent-text:#F2B968;
+    --accent-ink:#171308;
+    --ok:#4BC4A0;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 16px 40px -18px rgba(0,0,0,.6);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  @media (prefers-reduced-motion:no-preference){ html{ scroll-behavior:smooth; } }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font-body); font-size:16px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease, color .25s ease;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; }
+  ::selection{ background:var(--accent); color:var(--accent-ink); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+  .skip-link{ position:absolute; left:-9999px; top:0; background:var(--accent); color:var(--accent-ink); padding:.6rem 1rem; z-index:100; font-family:var(--font-mono); text-decoration:none; }
+  .skip-link:focus{ left:1rem; top:1rem; }
+
+  .container{ max-width:var(--maxw); margin:0 auto; padding-inline:1.5rem; }
+  @media (max-width:600px){ .container{ padding-inline:1.15rem; } }
+
+  .eyebrow{ font-family:var(--font-mono); font-size:.78rem; color:var(--ink-faint); margin:0 0 .6rem; display:flex; align-items:center; gap:.45rem; }
+  .eyebrow::before{ content:'●'; color:var(--accent-text); font-size:.55rem; }
+
+  h1,h2,h3{ font-family:var(--font-display); font-weight:600; letter-spacing:-0.01em; margin:0; }
+  .section{ padding:clamp(3rem,7vw,5.5rem) 0; border-top:1px solid var(--line); }
+  .section-head{ margin-bottom:2.2rem; max-width:640px; }
+  .section-head h2{ font-size:clamp(1.5rem,3vw,2rem); }
+  .section-head p{ color:var(--ink-soft); margin:.7rem 0 0; }
+
+  .btn{ font-family:var(--font-mono); font-size:.8rem; font-weight:500; display:inline-flex; align-items:center; gap:.45rem; padding:.6rem .9rem; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--bg-card); color:var(--ink); cursor:pointer; text-decoration:none; white-space:nowrap; transition:transform .15s ease, border-color .15s ease; }
+  .btn:hover{ border-color:var(--accent); transform:translateY(-1px); }
+  .btn-primary{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600; }
+  .btn-primary:hover{ filter:brightness(1.05); }
+  .btn svg{ width:16px; height:16px; }
+
+  .nav{ position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:.85rem; position:relative; }
+  .brand{ font-family:var(--font-mono); font-weight:600; font-size:.95rem; display:flex; align-items:center; text-decoration:none; }
+  .brand .cursor{ display:inline-block; width:.6ch; height:1em; margin-left:2px; background:var(--accent); animation:blink 1.1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .nav-links{ display:flex; gap:.9rem; list-style:none; margin:0; padding:0; font-family:var(--font-mono); font-size:.78rem; }
+  .nav-links a{ color:var(--ink-soft); text-decoration:none; white-space:nowrap; }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--accent-text); }
+  .nav-links a::before{ content:'/'; color:var(--ink-faint); margin-right:1px; }
+  .nav-actions{ display:flex; align-items:center; gap:.45rem; flex-wrap:wrap; justify-content:flex-end; }
+  .icon-btn{ width:36px; height:36px; display:grid; place-items:center; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--bg-card); cursor:pointer; }
+  .icon-btn svg{ width:17px; height:17px; }
+  .nav-toggle{ display:none; }
+  @media (max-width:1100px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:grid; }
+    .nav-links.open{ display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:var(--bg-card); border-bottom:1px solid var(--line); padding:1rem 1.5rem; gap:.9rem; }
+    .nav-links.open a::before{ content:'/ '; }
+  }
+
+  .hero{ padding-block:clamp(2.6rem,7vw,5rem); display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:center; }
+  @media (max-width:900px){
+    .hero{ grid-template-columns:1fr; }
+    .hero-copy{ order:1; }
+    .terminal{ order:2; }
+  }
+  .terminal{ background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+  .terminal-bar{ display:flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-bottom:1px solid var(--line); font-family:var(--font-mono); font-size:.72rem; color:var(--ink-faint); }
+  .terminal-bar .dot{ width:7px; height:7px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 3px color-mix(in srgb, var(--ok) 20%, transparent); }
+  .terminal-body{ padding:1.3rem 1.4rem 1.5rem; font-family:var(--font-mono); font-size:.82rem; color:var(--ink-soft); min-height:150px; }
+  .ln{ transition:opacity .3s ease, transform .3s ease; min-height:1.4em; }
+  .out-hidden{ opacity:0; transform:translateY(3px); }
+  .prompt{ color:var(--accent-text); }
+  .out{ color:var(--ink); }
+  .ok{ color:var(--ok); }
+  .caret{ display:inline-block; width:.55em; height:1em; background:var(--ink-soft); vertical-align:-2px; animation:blink 1s steps(1) infinite; }
+
+  .hero-copy .eyebrow{ margin-top:1.4rem; }
+  .hero h1{ font-size:clamp(2rem,5vw,3.1rem); margin:.3rem 0 .5rem; }
+  .hero .tagline{ font-family:var(--font-display); font-weight:500; color:var(--ink-soft); font-size:clamp(1rem,2vw,1.15rem); margin:0 0 1.1rem; }
+  .hero .pitch{ max-width:48ch; color:var(--ink-soft); margin:0 0 1.6rem; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:.8rem; margin-bottom:1.6rem; }
+  .hero-stats{ display:flex; flex-wrap:wrap; gap:.6rem; }
+  .stat-chip{ font-family:var(--font-mono); font-size:.76rem; color:var(--ink-soft); border:1px solid var(--line); border-radius:999px; padding:.35rem .8rem; background:var(--bg-card); }
+
+  .about-grid{ display:grid; grid-template-columns:1.3fr .7fr; gap:2.5rem; align-items:start; }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
+  .file-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+  .file-tab{ display:flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-bottom:1px solid var(--line); font-family:var(--font-mono); font-size:.76rem; color:var(--ink-faint); }
+  .file-tab .dotu{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .file-body{ padding:1.5rem 1.6rem; }
+  .file-body p{ margin:0 0 1rem; color:var(--ink-soft); }
+  .file-body p:last-child{ margin-bottom:0; }
+  .now-badge{ display:inline-flex; align-items:center; gap:.4rem; font-family:var(--font-mono); font-size:.74rem; color:var(--ok); border:1px solid color-mix(in srgb, var(--ok) 40%, transparent); background:color-mix(in srgb, var(--ok) 12%, transparent); padding:.3rem .7rem; border-radius:999px; }
+  .mini-badge{ display:inline-flex; align-items:center; font-family:var(--font-mono); font-size:.66rem; font-weight:500; color:var(--ok); border:1px solid color-mix(in srgb, var(--ok) 40%, transparent); background:color-mix(in srgb, var(--ok) 12%, transparent); padding:.15rem .5rem; border-radius:999px; margin-left:.5rem; vertical-align:middle; }
+
+  .facts{ display:flex; flex-direction:column; gap:.9rem; }
+  .fact{ background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius-sm); padding:.9rem 1rem; }
+  .fact .k{ font-family:var(--font-mono); font-size:.7rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; }
+  .fact .v{ font-family:var(--font-display); font-weight:600; margin-top:.25rem; }
+
+  .skills-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; }
+  @media (max-width:860px){ .skills-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.3rem; break-inside:avoid; }
+  .skill-card h3{ font-size:.95rem; margin-bottom:.9rem; display:flex; align-items:center; gap:.55rem; }
+  .skill-card h3 svg{ width:18px; height:18px; color:var(--accent); flex:none; }
+  .tag-list{ display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; margin:0; padding:0; }
+  .tag{ display:inline-flex; align-items:center; gap:.4rem; font-family:var(--font-mono); font-size:.78rem; background:var(--bg-raised); border:1px solid var(--line); padding:.32rem .65rem; border-radius:var(--radius-sm); color:var(--ink-soft); }
+  .tag::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--ok); flex:none; }
+  .tag.basic::before{ background:var(--ink-faint); }
+
+  .log{ display:flex; flex-direction:column; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--bg-card); }
+  .log-item{ border-bottom:1px solid var(--line); break-inside:avoid; }
+  .log-item:last-child{ border-bottom:none; }
+  .log-item summary{ list-style:none; cursor:pointer; }
+  .log-item summary::-webkit-details-marker{ display:none; }
+  .log-item summary::marker{ content:''; }
+  .log-head{ width:100%; display:flex; align-items:center; gap:1rem; padding:1.1rem 1.3rem; }
+  .log-head:hover{ background:var(--bg-raised); }
+  .log-date{ font-family:var(--font-mono); font-size:.78rem; color:var(--accent-text); flex:0 0 auto; white-space:nowrap; }
+  .log-title{ font-family:var(--font-display); font-weight:600; flex:1; }
+  .log-title span{ display:block; font-family:var(--font-body); font-style:italic; font-weight:400; color:var(--ink-soft); font-size:.9rem; margin-top:.15rem; }
+  .log-chevron{ width:18px; height:18px; color:var(--ink-faint); transition:transform .2s ease; flex:none; }
+  .log-item[open] .log-chevron{ transform:rotate(180deg); }
+  .log-body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+  .log-item[open] .log-body{ grid-template-rows:1fr; }
+  .log-body-inner{ overflow:hidden; }
+  .log-body-inner p{ margin:0 1.3rem 1.3rem; color:var(--ink-soft); }
+  .log-body-inner .tag-list{ margin:0 1.3rem 1.3rem; }
+
+  .projects-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.2rem; }
+  .project-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); padding:1.4rem; display:flex; flex-direction:column; gap:.8rem; break-inside:avoid; }
+  .project-card .badge{ align-self:flex-start; font-family:var(--font-mono); font-size:.7rem; color:var(--accent-text); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); padding:.2rem .55rem; border-radius:999px; }
+  .project-card h3{ font-size:1.05rem; }
+  .project-card p{ color:var(--ink-soft); margin:0; flex:1; }
+  .project-card.placeholder{ border-style:dashed; align-items:center; justify-content:center; text-align:center; color:var(--ink-faint); }
+  .project-card.placeholder svg{ width:24px; height:24px; margin-bottom:.2rem; color:var(--ink-faint); }
+  .project-link{ display:inline-flex; align-items:center; gap:.35rem; font-family:var(--font-mono); font-size:.78rem; color:var(--accent-text); text-decoration:none; }
+  .project-links-row{ display:flex; gap:1.1rem; flex-wrap:wrap; }
+  .project-link:hover{ text-decoration:underline; }
+  .project-link svg{ width:13px; height:13px; }
+  .project-card.linkcard{ justify-content:space-between; text-decoration:none; }
+  .project-card.linkcard svg{ width:20px; height:20px; color:var(--accent); flex:none; }
+
+  .edu-list{ display:flex; flex-direction:column; gap:1rem; }
+  .edu-item{ display:flex; gap:1.2rem; background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.3rem; break-inside:avoid; }
+  .edu-item .dateline{ font-family:var(--font-mono); font-size:.78rem; color:var(--accent-text); flex:0 0 140px; }
+  .edu-item h3{ font-size:1rem; margin-bottom:.2rem; }
+  .edu-item p{ margin:0; color:var(--ink-soft); font-size:.92rem; }
+  @media (max-width:640px){ .edu-item{ flex-direction:column; gap:.4rem; } .edu-item .dateline{ flex:none; } }
+
+  .contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+  .contact-card{ display:flex; align-items:center; gap:.9rem; background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); padding:1rem 1.1rem; text-decoration:none; color:var(--ink); break-inside:avoid; }
+  .contact-card:hover{ border-color:var(--accent); }
+  .contact-card .ic{ width:38px; height:38px; border-radius:var(--radius-sm); background:var(--bg-raised); display:grid; place-items:center; flex:none; }
+  .contact-card .ic svg{ width:18px; height:18px; color:var(--accent); }
+  .contact-card .lab{ font-family:var(--font-mono); font-size:.7rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.03em; }
+  .contact-card .val{ font-weight:600; word-break:break-word; }
+
+  footer{ border-top:1px solid var(--line); padding:2rem 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.8rem; font-family:var(--font-mono); font-size:.78rem; color:var(--ink-faint); }
+
+  .reveal{ transition:opacity .5s ease, transform .5s ease; }
+  .reveal.reveal-init{ opacity:0; transform:translateY(14px); }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    .reveal.reveal-init{ opacity:1; transform:none; }
+  }
+
+  @media print{
+    .nav, .hero-ctas, .icon-btn, .btn, .skip-link, .log-chevron, .project-card.placeholder, .project-card.linkcard, .lang-switch{ display:none !important; }
+    body{ background:#fff !important; color:#111 !important; }
+    .section{ border-top:1px solid #ddd; padding:1rem 0; break-inside:avoid; }
+    .terminal, .file-card, .skill-card, .log, .project-card, .edu-item, .contact-card, .fact, .now-badge{
+      background:#fff !important; box-shadow:none !important; border-color:#ccc !important; color:#111 !important;
+    }
+    .tag{ background:#f3f3f3 !important; border-color:#ccc !important; color:#111 !important; }
+    a{ text-decoration:none; color:#111 !important; }
+    .log-body{ display:block !important; grid-template-rows:none !important; }
+    .log-body-inner{ overflow:visible !important; }
+    .prompt, .out, .ok, .eyebrow::before, .log-date, .edu-item .dateline, .project-card .badge{ color:#111 !important; }
+  }
+
+  .lang-switch{ display:flex; gap:.25rem; padding:.2rem; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--bg-card); }
+  .lang-btn{ font-family:var(--font-mono); font-size:.7rem; font-weight:600; padding:.3rem .45rem; border-radius:4px; border:none; background:transparent; color:var(--ink-faint); cursor:pointer; white-space:nowrap; transition:background .15s ease, color .15s ease; }
+  .lang-btn:hover{ color:var(--ink); }
+  .lang-btn.active{ background:var(--accent); color:var(--accent-ink); }
+  @media (max-width:560px){
+    .btn .btn-label{ display:none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#inicio" class="brand">Agoitz<span class="cursor"></span></a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre-mi" data-i18n="nav.about">sobre-mi</a></li>
+        <li><a href="#habilidades" data-i18n="nav.skills">habilidades</a></li>
+        <li><a href="#experiencia" data-i18n="nav.experience">experiencia</a></li>
+        <li><a href="#proyectos" data-i18n="nav.projects">proyectos</a></li>
+        <li><a href="#educacion" data-i18n="nav.education">educacion</a></li>
+        <li><a href="#contacto" data-i18n="nav.contact">contacto</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Cambiar idioma / Change language / Hizkuntza aldatu">
+        <button type="button" class="lang-btn" data-lang="eu">EUS</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema claro u oscuro" data-i18n-aria="a11y.themeToggle">
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:none"><path d="M21 12.5A8.5 8.5 0 1 1 11.5 3a7 7 0 0 0 9.5 9.5Z"/></svg>
+      </button>
+      <a class="btn" id="btnPrint" href="cv/Agoitz_Ezkerra_CV.pdf" download="Agoitz_Ezkerra_CV.pdf" data-cv-es="cv/Agoitz_Ezkerra_CV.pdf" data-cv-en="cv/Agoitz_Ezkerra_CV_EN.pdf" data-cv-eu="cv/Agoitz_Ezkerra_CV_EU.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M5 19h14"/></svg>
+        <span class="btn-label" data-i18n="nav.downloadCv">Descargar CV</span>
+      </a>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Abrir menú" data-i18n-aria="a11y.openMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section id="inicio" class="hero container">
+    <div class="terminal">
+      <div class="terminal-bar"><span class="dot"></span> agoitz@portfolio — zsh</div>
+      <div class="terminal-body">
+        <div class="ln"><span class="prompt">agoitz@portfolio:~$</span> <span id="cmd1">whoami</span></div>
+        <div class="ln out" id="out1">Agoitz Ezkerra Berasategi</div>
+        <div class="ln"><span class="prompt">agoitz@portfolio:~$</span> <span id="cmd2">systemctl status desarrollo.service</span></div>
+        <div class="ln out" id="out2" data-i18n-html="hero.out2">● <span class="ok">active (running)</span> — Full-Stack · Sistemas — desde 2018</div>
+        <div class="ln" id="caretLine"><span class="prompt">agoitz@portfolio:~$</span> <span class="caret"></span></div>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <p class="eyebrow" data-i18n="hero.eyebrow">~/inicio</p>
+      <h1>Agoitz Ezkerra Berasategi</h1>
+      <p class="tagline" data-i18n="hero.tagline">Desarrollador Full-Stack con base en Administración de Sistemas</p>
+      <p class="pitch" data-i18n="hero.pitch">Construyo aplicaciones completas — del servidor a la interfaz — y entiendo la infraestructura que las mantiene en pie. Formación en Desarrollo Web y en Administración de Sistemas Informáticos en Red.</p>
+      <div class="hero-ctas">
+        <a href="#proyectos" class="btn btn-primary" data-i18n="hero.ctaProjects">Ver proyectos</a>
+        <a href="#contacto" class="btn" data-i18n="hero.ctaContact">Contactar</a>
+      </div>
+      <div class="hero-stats">
+        <span class="stat-chip" data-i18n="hero.stat1">2+ años de experiencia</span>
+        <span class="stat-chip" data-i18n="hero.stat2">Doble especialización: Sistemas + Desarrollo</span>
+        <span class="stat-chip" data-i18n="hero.stat3">Euskera · Español · Inglés</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi" class="section container reveal">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="about.eyebrow">~/sobre-mi</p>
+      <h2 data-i18n="about.h2">Sobre mí</h2>
+    </div>
+    <div class="about-grid">
+      <div class="file-card">
+        <div class="file-tab"><span class="dotu"></span> README.md</div>
+        <div class="file-body">
+          <p data-i18n="about.p1">He trabajado a ambos lados de la pila tecnológica: dando soporte y administrando servidores, y construyendo aplicaciones web completas con Spring, Angular y bases de datos relacionales. Me interesa especialmente el punto donde ambos mundos se cruzan — aplicaciones que funcionan bien no solo en el código, sino en la infraestructura que las sostiene.</p>
+          <p data-i18n-html="about.status"><span class="now-badge">● en activo</span> &nbsp;Actualmente en Grupo Salto como microinformático, tras completar los ciclos de Desarrollo de Aplicaciones Web (DAW) y Administración de Sistemas Informáticos en Red (ASIR).</p>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k" data-i18n="about.factLocationK">Ubicación</div><div class="v" data-i18n="about.factLocationV">Donostia, País Vasco</div></div>
+        <div class="fact"><div class="k" data-i18n="about.factLangK">Idiomas</div><div class="v" data-i18n="about.factLangV">Euskera · Español · Inglés (B1)</div></div>
+        <div class="fact"><div class="k" data-i18n="about.factProfileK">Perfil</div><div class="v">Full-Stack / DevOps</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="habilidades" class="section container reveal">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="skills.eyebrow">~/habilidades</p>
+      <h2 data-i18n="skills.h2">Habilidades técnicas</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="6" rx="1"/><rect x="4" y="14" width="16" height="6" rx="1"/><circle cx="7.5" cy="7" r=".6" fill="currentColor" stroke="none"/><circle cx="7.5" cy="17" r=".6" fill="currentColor" stroke="none"/></svg> <span data-i18n="skills.backend">Backend</span></h3>
+        <ul class="tag-list">
+          <li class="tag">Java</li><li class="tag" data-i18n="skills.oop">POO</li><li class="tag">PHP</li><li class="tag">Python</li><li class="tag">Laravel</li><li class="tag">Spring Boot</li><li class="tag">Node.js</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><line x1="3" y1="8.5" x2="21" y2="8.5"/></svg> <span data-i18n="skills.frontend">Frontend</span></h3>
+        <ul class="tag-list">
+          <li class="tag">Angular</li><li class="tag">React</li><li class="tag">HTML / CSS</li><li class="tag">JavaScript</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/><path d="M5 11.5v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/></svg> <span data-i18n="skills.databases">Bases de datos</span></h3>
+        <ul class="tag-list">
+          <li class="tag">MySQL</li><li class="tag">PostgreSQL</li><li class="tag" data-i18n="skills.sqlBasic">SQL</li><li class="tag">SQLServer</li><li class="tag">OracleServer</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 18.5a4.2 4.2 0 0 1-.4-8.4 5.6 5.6 0 0 1 10.8-1.8 4.2 4.2 0 0 1-.4 8.2Z"/></svg> <span data-i18n="skills.cloud">Cloud &amp; Infraestructura</span></h3>
+        <ul class="tag-list">
+          <li class="tag">AWS</li><li class="tag">VMware</li><li class="tag">Virtualbox</li><li class="tag" data-i18n="skills.serverAdmin">Administración de servidores</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="6" x2="20" y2="6"/><circle cx="9" cy="6" r="1.6" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="7" cy="18" r="1.6" fill="currentColor" stroke="none"/></svg> <span data-i18n="skills.tools">Herramientas &amp; Metodología</span></h3>
+        <ul class="tag-list">
+          <li class="tag">Git / GitHub</li><li class="tag">Agile (Scrum)</li><li class="tag">Microsoft Office</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia" class="section container reveal">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="exp.eyebrow">~/experiencia</p>
+      <h2 data-i18n="exp.h2">Experiencia profesional</h2>
+    </div>
+    <div class="log">
+      <details class="log-item" open>
+        <summary class="log-head">
+          <span class="log-date" data-i18n="exp.date1">2026 — actualidad</span>
+          <span class="log-title" data-i18n-html="exp.title1">Microinformático<span>Grupo Salto</span></span>
+          <svg class="log-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="log-body"><div class="log-body-inner">
+          <p data-i18n="exp.body1">Soporte y mantenimiento microinformático: equipos y puestos de usuario. Incorporación el 8 de julio de 2026.</p>
+        </div></div>
+      </details>
+      <details class="log-item">
+        <summary class="log-head">
+          <span class="log-date" data-i18n="exp.date2">Marzo – Mayo 2026</span>
+          <span class="log-title" data-i18n-html="exp.title2">Prácticas — Automatización con Python<span>Farmacia Gipuzkoa Plaza</span></span>
+          <svg class="log-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="log-body"><div class="log-body-inner">
+          <p data-i18n="exp.body2">Prácticas de 3 meses automatizando tareas y procesos internos mediante scripts en Python.</p>
+          <ul class="tag-list"><li class="tag">Python</li></ul>
+        </div></div>
+      </details>
+      <details class="log-item">
+        <summary class="log-head">
+          <span class="log-date">2023 – 2024</span>
+          <span class="log-title" data-i18n-html="exp.title3">Administrador de Sistemas<span>Administración de la Seguridad Social</span></span>
+          <svg class="log-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="log-body"><div class="log-body-inner">
+          <p data-i18n="exp.body3">Atención al usuario y al cliente, y mantenimiento de equipos informáticos.</p>
+        </div></div>
+      </details>
+      <details class="log-item">
+        <summary class="log-head">
+          <span class="log-date">2022 – 2023</span>
+          <span class="log-title" data-i18n-html="exp.title4">Desarrollador Web<span>Ibermatica</span></span>
+          <svg class="log-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="log-body"><div class="log-body-inner">
+          <p data-i18n="exp.body4">Desarrollo de una aplicación web con Spring y Angular, con base de datos en PostgreSQL.</p>
+          <ul class="tag-list"><li class="tag">Spring</li><li class="tag">Angular</li><li class="tag">PostgreSQL</li></ul>
+        </div></div>
+      </details>
+      <details class="log-item">
+        <summary class="log-head">
+          <span class="log-date">2020 – 2021</span>
+          <span class="log-title" data-i18n-html="exp.title5">Administrador de Sistemas<span>Ibermatica · Donostia</span></span>
+          <svg class="log-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="log-body"><div class="log-body-inner">
+          <p data-i18n="exp.body5">Planes de mantenimiento, informes, y creación y administración de servidores.</p>
+        </div></div>
+      </details>
+    </div>
+  </section>
+
+  <section id="proyectos" class="section container reveal">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="proj.eyebrow">~/proyectos</p>
+      <h2 data-i18n="proj.h2">Proyectos</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="badge" data-i18n="proj.badge3">Proyecto académico (equipo)</span>
+        <h3 data-i18n="proj.title3">Erronka — Car Crashers (desguace)</h3>
+        <p data-i18n="proj.desc3">Web para una empresa ficticia de desguace, desarrollada en equipo de 3 personas como ejercicio del ciclo de Desarrollo de Aplicaciones Web.</p>
+        <ul class="tag-list"><li class="tag">JavaScript</li><li class="tag">PHP</li><li class="tag">CSS</li></ul>
+        <div class="project-links-row">
+          <a class="project-link" href="https://agoitz00.github.io/Erronka/" target="_blank" rel="noopener"><span data-i18n="proj.viewDemo">Ver demo</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+          <a class="project-link" href="https://github.com/Agoitz00/Erronka" target="_blank" rel="noopener"><span data-i18n="proj.viewCode">Ver código</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+      <div class="project-card">
+        <span class="badge" data-i18n="proj.badge4">Proyecto personal</span>
+        <h3 data-i18n="proj.title4">TPV Hostelería — Node.js + Electron</h3>
+        <p data-i18n="proj.desc4">Sistema TPV para hostelería: gestión de mesas y comandas en tiempo real (SSE), pantalla de cocina y panel de administración. Backend en Node.js/Express con SQLite nativo, instalable como PWA en tablet.</p>
+        <ul class="tag-list"><li class="tag">Node.js</li><li class="tag">Express</li><li class="tag">SQLite</li><li class="tag">PWA</li></ul>
+        <a class="project-link" href="https://github.com/Agoitz00/Hostalaritza" target="_blank" rel="noopener"><span data-i18n="proj.viewCode">Ver código</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      </div>
+      <div class="project-card">
+        <span class="badge" data-i18n="proj.badge1">Proyecto académico</span>
+        <h3 data-i18n="proj.title1">Gestión de registros — PHP + MySQL</h3>
+        <p data-i18n="proj.desc1">Aplicación con backend en PHP y base de datos MySQL: alta, edición, borrado y listado de registros, con control de errores.</p>
+        <ul class="tag-list"><li class="tag">PHP</li><li class="tag">MySQL</li><li class="tag" data-i18n="skills.oop">POO</li></ul>
+        <a class="project-link" href="https://github.com/Agoitz00/exam" target="_blank" rel="noopener"><span data-i18n="proj.viewCode">Ver código</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      </div>
+      <div class="project-card">
+        <span class="badge" data-i18n="proj.badge2">Automatización</span>
+        <h3 data-i18n="proj.title2">Buscar_Labs — Búsqueda de laboratorios</h3>
+        <p data-i18n="proj.desc2">Script en Python que localiza el laboratorio de cada producto de un listado en Excel, consultando la web de la Diputación Foral de Gipuzkoa (DFG).</p>
+        <ul class="tag-list"><li class="tag">Python</li><li class="tag">Excel</li></ul>
+        <a class="project-link" href="https://github.com/Agoitz00/Buscar_Labs" target="_blank" rel="noopener"><span data-i18n="proj.viewCode">Ver código</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      </div>
+      <a href="https://github.com/Agoitz00" target="_blank" rel="noopener" class="project-card linkcard">
+        <div>
+          <h3 data-i18n="proj.viewAllTitle">Ver todo en GitHub</h3>
+          <p data-i18n="proj.viewAllDesc">Repositorios y código detrás de cada proyecto.</p>
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section id="educacion" class="section container reveal">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="edu.eyebrow">~/educacion</p>
+      <h2 data-i18n="edu.h2">Educación y formación</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="dateline">2024 — 2026</div>
+        <div><h3 data-i18n="edu.title1">Desarrollo de Aplicaciones Web (DAW)</h3><p>Zubiri Manteo</p></div>
+      </div>
+      <div class="edu-item">
+        <div class="dateline">2018 — 2021</div>
+        <div><h3 data-i18n="edu.title2">Administración de Sistemas Informáticos en Red</h3><p data-i18n="edu.desc2">Zubiri Manteo</p></div>
+      </div>
+      <div class="edu-item">
+        <div class="dateline">2016 — 2018</div>
+        <div><h3 data-i18n="edu.title3">Bachillerato Científico</h3><p>Antigua-Luberri</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section container reveal">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="contact.eyebrow">~/contacto</p>
+      <h2 data-i18n="contact.h2">Hablemos</h2>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:agoitz00@gmail.com">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><polyline points="4 6 12 13 20 6"/></svg></div>
+        <div><div class="lab" data-i18n="contact.email">Email</div><div class="val">agoitz00@gmail.com</div></div>
+      </a>
+      <a class="contact-card" href="tel:+34627639890">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
+        <div><div class="lab" data-i18n="contact.phone">Teléfono</div><div class="val">+34 627 639 890</div></div>
+      </a>
+      <a class="contact-card" href="https://github.com/Agoitz00" target="_blank" rel="noopener">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div>
+        <div><div class="lab" data-i18n="contact.github">GitHub</div><div class="val">Agoitz00</div></div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/agoitz-ezkerra-6a300a209" target="_blank" rel="noopener">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><line x1="7.8" y1="7.3" x2="10.5" y2="16.2"/><line x1="16.2" y1="7.3" x2="13.5" y2="16.2"/><line x1="8.2" y1="6" x2="15.8" y2="6"/></svg></div>
+        <div><div class="lab" data-i18n="contact.linkedin">LinkedIn</div><div class="val">Agoitz Ezkerra</div></div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>// Agoitz Ezkerra Berasategi</span>
+    <span data-i18n="footer.updated">última actualización · julio 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var currentLang = 'es';
+
+  var themeBtn = document.getElementById('themeToggle');
+  var iconSun = document.getElementById('iconSun');
+  var iconMoon = document.getElementById('iconMoon');
+  function setTheme(t){
+    root.setAttribute('data-theme', t);
+    if(iconSun) iconSun.style.display = t === 'dark' ? 'block' : 'none';
+    if(iconMoon) iconMoon.style.display = t === 'dark' ? 'none' : 'block';
+  }
+  if(themeBtn){
+    themeBtn.addEventListener('click', function(){
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+  }
+
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if(navToggle && navLinks){
+    navToggle.addEventListener('click', function(){ navLinks.classList.toggle('open'); });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+    });
+  }
+
+  function initHeroTerminal(){
+    var cmd1 = document.getElementById('cmd1');
+    var out1 = document.getElementById('out1');
+    var cmd2 = document.getElementById('cmd2');
+    var out2 = document.getElementById('out2');
+    var caretLine = document.getElementById('caretLine');
+    var terminalEl = document.querySelector('.terminal');
+    if(!cmd1 || !out1 || !cmd2 || !out2 || reduceMotion) return;
+
+    var text1 = cmd1.textContent;
+    var text2 = cmd2.textContent;
+    var skipped = false;
+
+    function finishNow(){
+      if(skipped) return;
+      skipped = true;
+      cmd1.textContent = text1;
+      cmd2.textContent = text2;
+      out1.classList.remove('out-hidden');
+      out2.classList.remove('out-hidden');
+      if(caretLine) caretLine.classList.remove('out-hidden');
+    }
+    if(terminalEl){
+      terminalEl.style.cursor = 'pointer';
+      terminalEl.title = 'Clic para saltar la animación';
+      terminalEl.addEventListener('click', finishNow);
+    }
+
+    cmd1.textContent = '';
+    cmd2.textContent = '';
+    out1.classList.add('out-hidden');
+    out2.classList.add('out-hidden');
+    if(caretLine) caretLine.classList.add('out-hidden');
+
+    function typeInto(el, text, done){
+      var i = 0;
+      (function step(){
+        if(skipped) return;
+        el.textContent = text.slice(0, i);
+        i++;
+        if(i <= text.length){ setTimeout(step, 16 + Math.random()*20); }
+        else { setTimeout(done, 260); }
+      })();
+    }
+
+    typeInto(cmd1, text1, function(){
+      if(skipped) return;
+      out1.classList.remove('out-hidden');
+      setTimeout(function(){
+        if(skipped) return;
+        typeInto(cmd2, text2, function(){
+          if(skipped) return;
+          out2.classList.remove('out-hidden');
+          if(caretLine){ setTimeout(function(){ if(!skipped) caretLine.classList.remove('out-hidden'); }, 250); }
+        });
+      }, 350);
+    });
+  }
+  initHeroTerminal();
+
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    var revealEls = document.querySelectorAll('.reveal');
+    revealEls.forEach(function(el){ el.classList.add('reveal-init'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.remove('reveal-init');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  var translations = {
+    es: {
+      "meta.title": "Agoitz Ezkerra Berasategi — Desarrollador Full-Stack & Administrador de Sistemas",
+      "meta.description": "Portfolio de Agoitz Ezkerra Berasategi: desarrollador full-stack con base en administración de sistemas. PHP, Laravel, Spring Boot, Angular, React, MySQL, AWS.",
+      "a11y.skip": "Saltar al contenido",
+      "a11y.themeToggle": "Cambiar tema claro u oscuro",
+      "a11y.openMenu": "Abrir menú",
+      "hero.terminalHint": "Clic para saltar la animación",
+      "nav.about": "sobre-mi",
+      "nav.skills": "habilidades",
+      "nav.experience": "experiencia",
+      "nav.projects": "proyectos",
+      "nav.education": "educacion",
+      "nav.contact": "contacto",
+      "nav.downloadCv": "Descargar CV",
+      "hero.eyebrow": "~/inicio",
+      "hero.tagline": "Desarrollador Full-Stack con base en Administración de Sistemas",
+      "hero.pitch": "Construyo aplicaciones completas — del servidor a la interfaz — y entiendo la infraestructura que las mantiene en pie. Formación en Desarrollo Web y en Administración de Sistemas Informáticos en Red.",
+      "hero.ctaProjects": "Ver proyectos",
+      "hero.ctaContact": "Contactar",
+      "hero.stat1": "2+ años de experiencia",
+      "hero.stat2": "Doble especialización: Sistemas + Desarrollo",
+      "hero.stat3": "Euskera · Español · Inglés",
+      "hero.out2": '● <span class="ok">active (running)</span> — Full-Stack · Sistemas — desde 2018',
+      "about.eyebrow": "~/sobre-mi",
+      "about.h2": "Sobre mí",
+      "about.p1": "He trabajado a ambos lados de la pila tecnológica: dando soporte y administrando servidores, y construyendo aplicaciones web completas con Spring, Angular y bases de datos relacionales. Me interesa especialmente el punto donde ambos mundos se cruzan — aplicaciones que funcionan bien no solo en el código, sino en la infraestructura que las sostiene.",
+      "about.status": '<span class="now-badge">● en activo</span> &nbsp;Actualmente en Grupo Salto como microinformático, tras completar los ciclos de Desarrollo de Aplicaciones Web (DAW) y Administración de Sistemas Informáticos en Red (ASIR).',
+      "about.factLocationK": "Ubicación",
+      "about.factLocationV": "Donostia, País Vasco",
+      "about.factLangK": "Idiomas",
+      "about.factLangV": "Euskera · Español · Inglés (B1)",
+      "about.factProfileK": "Perfil",
+      "skills.eyebrow": "~/habilidades",
+      "skills.h2": "Habilidades técnicas",
+      "skills.subtitle": "Agrupadas por área — así se ve de un vistazo dónde encajas en un equipo.",
+      "skills.backend": "Backend",
+      "skills.frontend": "Frontend",
+      "skills.databases": "Bases de datos",
+      "skills.cloud": "Cloud & Infraestructura",
+      "skills.tools": "Herramientas & Metodología",
+      "skills.oop": "POO",
+      "skills.sqlBasic": "SQL",
+      "skills.serverAdmin": "Administración de servidores",
+      "exp.eyebrow": "~/experiencia",
+      "exp.h2": "Experiencia profesional",
+      "exp.date1": "2026 — actualidad",
+      "exp.date2": "Marzo – Mayo 2026",
+      "exp.title1": "Microinformático<span>Grupo Salto</span>",
+      "exp.title2": "Prácticas — Automatización con Python<span>Farmacia Gipuzkoa Plaza</span>",
+      "exp.title3": "Administrador de Sistemas<span>Administración de la Seguridad Social</span>",
+      "exp.title4": "Desarrollador Web<span>Ibermatica</span>",
+      "exp.title5": "Administrador de Sistemas<span>Ibermatica · Donostia</span>",
+      "exp.body1": "Soporte y mantenimiento microinformático: equipos y puestos de usuario. Incorporación el 8 de julio de 2026.",
+      "exp.body2": "Prácticas de 3 meses automatizando tareas y procesos internos mediante scripts en Python.",
+      "exp.body3": "Atención al usuario y al cliente, y mantenimiento de equipos informáticos.",
+      "exp.body4": "Desarrollo de una aplicación web con Spring y Angular, con base de datos en PostgreSQL.",
+      "exp.body5": "Planes de mantenimiento, informes, y creación y administración de servidores.",
+      "proj.eyebrow": "~/proyectos",
+      "proj.h2": "Proyectos",
+      "proj.subtitle": "Dos o tres proyectos reales suelen convencer más que veinte tecnologías en una lista.",
+      "proj.badge1": "Proyecto académico",
+      "proj.badge2": "Automatización",
+      "proj.title1": "Gestión de registros — PHP + MySQL",
+      "proj.desc1": "Aplicación con backend en PHP y base de datos MySQL: alta, edición, borrado y listado de registros, con control de errores.",
+      "proj.title2": "Buscar_Labs — Búsqueda de laboratorios",
+      "proj.desc2": "Script en Python que localiza el laboratorio de cada producto de un listado en Excel, consultando la web de la Diputación Foral de Gipuzkoa (DFG).",
+      "proj.badge3": "Proyecto académico (equipo)",
+      "proj.title3": "Erronka — Car Crashers (desguace)",
+      "proj.desc3": "Web para una empresa ficticia de desguace, desarrollada en equipo de 3 personas como ejercicio del ciclo de Desarrollo de Aplicaciones Web.",
+      "proj.badge4": "Proyecto personal",
+      "proj.title4": "TPV Hostelería — Node.js + Electron",
+      "proj.desc4": "Sistema TPV para hostelería: gestión de mesas y comandas en tiempo real (SSE), pantalla de cocina y panel de administración. Backend en Node.js/Express con SQLite nativo, instalable como PWA en tablet.",
+      "proj.viewDemo": "Ver demo",
+      "proj.viewCode": "Ver código",
+      "proj.viewAllTitle": "Ver todo en GitHub",
+      "proj.viewAllDesc": "Repositorios y código detrás de cada proyecto.",
+      "edu.eyebrow": "~/educacion",
+      "edu.h2": "Educación y formación",
+      "edu.title1": "Desarrollo de Aplicaciones Web (DAW)",
+      "edu.title2": "Administración de Sistemas Informáticos en Red",
+      "edu.desc2": "Zubiri Manteo",
+      "edu.title3": "Bachillerato Científico",
+      "lang.eyebrow": "~/idiomas",
+      "lang.h2": "Idiomas",
+      "lang.eu": "Euskera",
+      "lang.es": "Español",
+      "lang.en": "Inglés",
+      "lang.native": "Nativo",
+      "lang.b1": "B1",
+      "contact.eyebrow": "~/contacto",
+      "contact.h2": "Hablemos",
+      "contact.email": "Email",
+      "contact.phone": "Teléfono",
+      "contact.github": "GitHub",
+      "contact.linkedin": "LinkedIn",
+      "footer.updated": "última actualización · julio 2026"
+    },
+    en: {
+      "meta.title": "Agoitz Ezkerra Berasategi — Full-Stack Developer & Systems Administrator",
+      "meta.description": "Portfolio of Agoitz Ezkerra Berasategi: full-stack developer with a background in systems administration. PHP, Laravel, Spring Boot, Angular, React, MySQL, AWS.",
+      "a11y.skip": "Skip to content",
+      "a11y.themeToggle": "Toggle light or dark theme",
+      "a11y.openMenu": "Open menu",
+      "hero.terminalHint": "Click to skip the animation",
+      "nav.about": "about",
+      "nav.skills": "skills",
+      "nav.experience": "experience",
+      "nav.projects": "projects",
+      "nav.education": "education",
+      "nav.contact": "contact",
+      "nav.downloadCv": "Download CV",
+      "hero.eyebrow": "~/home",
+      "hero.tagline": "Full-Stack Developer with a background in Systems Administration",
+      "hero.pitch": "I build complete applications — from server to interface — and understand the infrastructure that keeps them running. Trained in Web Development and Networked Systems Administration.",
+      "hero.ctaProjects": "View projects",
+      "hero.ctaContact": "Contact",
+      "hero.stat1": "2+ years of experience",
+      "hero.stat2": "Dual specialization: Systems + Development",
+      "hero.stat3": "Basque · Spanish · English",
+      "hero.out2": '● <span class="ok">active (running)</span> — Full-Stack · Systems — since 2018',
+      "about.eyebrow": "~/about",
+      "about.h2": "About me",
+      "about.p1": "I've worked on both sides of the stack: supporting and administering servers, and building complete web applications with Spring, Angular, and relational databases. I'm especially interested in where both worlds meet — applications that work well not just in the code, but in the infrastructure that keeps them running.",
+      "about.status": '<span class="now-badge">● active</span> &nbsp;Currently at Grupo Salto as an IT support technician, after completing the Web Application Development (DAW) and Networked Systems Administration (ASIR) programs.',
+      "about.factLocationK": "Location",
+      "about.factLocationV": "Donostia, Basque Country",
+      "about.factLangK": "Languages",
+      "about.factLangV": "Basque · Spanish · English (B1)",
+      "about.factProfileK": "Profile",
+      "skills.eyebrow": "~/skills",
+      "skills.h2": "Technical skills",
+      "skills.subtitle": "Grouped by area — so you can see at a glance where I'd fit on a team.",
+      "skills.backend": "Backend",
+      "skills.frontend": "Frontend",
+      "skills.databases": "Databases",
+      "skills.cloud": "Cloud & Infrastructure",
+      "skills.tools": "Tools & Methodology",
+      "skills.oop": "OOP",
+      "skills.sqlBasic": "SQL",
+      "skills.serverAdmin": "Server administration",
+      "exp.eyebrow": "~/experience",
+      "exp.h2": "Professional experience",
+      "exp.date1": "2026 — present",
+      "exp.date2": "March – May 2026",
+      "exp.title1": "IT Support Technician<span>Grupo Salto</span>",
+      "exp.title2": "Internship — Python Automation<span>Farmacia Gipuzkoa Plaza</span>",
+      "exp.title3": "Systems Administrator<span>Social Security Administration</span>",
+      "exp.title4": "Web Developer<span>Ibermatica</span>",
+      "exp.title5": "Systems Administrator<span>Ibermatica · Donostia</span>",
+      "exp.body1": "IT support and maintenance: equipment and user workstations. Started July 8, 2026.",
+      "exp.body2": "3-month internship automating internal tasks and processes with Python scripts.",
+      "exp.body3": "User and customer support, and maintenance of computer equipment.",
+      "exp.body4": "Development of a web application with Spring and Angular, with a PostgreSQL database.",
+      "exp.body5": "Maintenance plans, reports, and server creation and administration.",
+      "proj.eyebrow": "~/projects",
+      "proj.h2": "Projects",
+      "proj.subtitle": "Two or three real projects usually convince more than twenty technologies in a list.",
+      "proj.badge1": "Academic project",
+      "proj.badge2": "Automation",
+      "proj.title1": "Record management — PHP + MySQL",
+      "proj.desc1": "Application with a PHP backend and MySQL database: creating, editing, deleting, and listing records, with error handling.",
+      "proj.title2": "Buscar_Labs — Lab lookup tool",
+      "proj.desc2": "Python script that finds the lab for each product in an Excel list, by querying the Gipuzkoa Provincial Council (DFG) website.",
+      "proj.badge3": "Academic project (team)",
+      "proj.title3": "Erronka — Car Crashers (scrapyard)",
+      "proj.desc3": "Website for a fictional scrapyard company, built with a 3-person team as an exercise for the Web Application Development program.",
+      "proj.badge4": "Personal project",
+      "proj.title4": "Hospitality POS — Node.js + Electron",
+      "proj.desc4": "Restaurant POS system with real-time table and order management (SSE), a kitchen display screen, and an admin panel. Node.js/Express backend with native SQLite, installable as a PWA on tablets.",
+      "proj.viewDemo": "View demo",
+      "proj.viewCode": "View code",
+      "proj.viewAllTitle": "View all on GitHub",
+      "proj.viewAllDesc": "Repositories and code behind each project.",
+      "edu.eyebrow": "~/education",
+      "edu.h2": "Education and training",
+      "edu.title1": "Web Application Development (DAW)",
+      "edu.title2": "Networked Systems Administration",
+      "edu.desc2": "Zubiri Manteo",
+      "edu.title3": "Science Baccalaureate",
+      "lang.eyebrow": "~/languages",
+      "lang.h2": "Languages",
+      "lang.eu": "Basque",
+      "lang.es": "Spanish",
+      "lang.en": "English",
+      "lang.native": "Native",
+      "lang.b1": "B1",
+      "contact.eyebrow": "~/contact",
+      "contact.h2": "Let's talk",
+      "contact.email": "Email",
+      "contact.phone": "Phone",
+      "contact.github": "GitHub",
+      "contact.linkedin": "LinkedIn",
+      "footer.updated": "last updated · July 2026"
+    },
+    eu: {
+      "meta.title": "Agoitz Ezkerra Berasategi — Full-Stack Garatzailea & Sistemen Administratzailea",
+      "meta.description": "Agoitz Ezkerra Berasategiren portfolioa: full-stack garatzailea, sistemen administrazioan oinarrituta. PHP, Laravel, Spring Boot, Angular, React, MySQL, AWS.",
+      "a11y.skip": "Joan edukira",
+      "a11y.themeToggle": "Aldatu tema argia edo iluna",
+      "a11y.openMenu": "Ireki menua",
+      "hero.terminalHint": "Klik animazioa saltatzeko",
+      "nav.about": "niri-buruz",
+      "nav.skills": "trebetasunak",
+      "nav.experience": "esperientzia",
+      "nav.projects": "proiektuak",
+      "nav.education": "ikasketak",
+      "nav.contact": "kontaktua",
+      "nav.downloadCv": "CV-a deskargatu",
+      "hero.eyebrow": "~/hasiera",
+      "hero.tagline": "Full-Stack garatzailea, Sistemen Administrazioan oinarrituta",
+      "hero.pitch": "Aplikazio osoak eraikitzen ditut — zerbitzaritik interfazera — eta horiek martxan mantentzen dituen azpiegitura ulertzen dut. Web Garapenean eta Sareko Sistema Informatikoen Administrazioan prestakuntza.",
+      "hero.ctaProjects": "Proiektuak ikusi",
+      "hero.ctaContact": "Kontaktatu",
+      "hero.stat1": "2+ urteko esperientzia",
+      "hero.stat2": "Espezializazio bikoitza: Sistemak + Garapena",
+      "hero.stat3": "Euskara · Gaztelania · Ingelesa",
+      "hero.out2": '● <span class="ok">active (running)</span> — Full-Stack · Sistemak — 2018tik',
+      "about.eyebrow": "~/ni-buruz",
+      "about.h2": "Niri buruz",
+      "about.p1": "Pila teknologikoaren bi aldeetan lan egin dut: zerbitzariei laguntza eta administrazioa emanez, eta Spring, Angular eta datu-base erlazionalekin web-aplikazio osoak eraikiz. Bereziki bi mundu horiek gurutzatzen diren puntua interesatzen zait — kodean bakarrik ez, baita horiei eusten dien azpiegituran ere ondo funtzionatzen duten aplikazioak.",
+      "about.status": '<span class="now-badge">● aktibo</span> &nbsp;Gaur egun Grupo Salton mikroinformatikari gisa, Web Aplikazioen Garapena (DAW) eta Sareko Sistema Informatikoen Administrazioa (ASIR) zikloak amaitu ondoren.',
+      "about.factLocationK": "Kokapena",
+      "about.factLocationV": "Donostia, Euskal Herria",
+      "about.factLangK": "Hizkuntzak",
+      "about.factLangV": "Euskara · Gaztelania · Ingelesa (B1)",
+      "about.factProfileK": "Perfila",
+      "skills.eyebrow": "~/trebetasunak",
+      "skills.h2": "Trebetasun teknikoak",
+      "skills.subtitle": "Arloka antolatuta — horrela, begirada batean ikusiko duzu nola egokitzen naizen talde batean.",
+      "skills.backend": "Backend",
+      "skills.frontend": "Frontend",
+      "skills.databases": "Datu-baseak",
+      "skills.cloud": "Cloud eta Azpiegitura",
+      "skills.tools": "Tresnak eta Metodologia",
+      "skills.oop": "OOP",
+      "skills.sqlBasic": "SQL",
+      "skills.serverAdmin": "Zerbitzarien administrazioa",
+      "exp.eyebrow": "~/esperientzia",
+      "exp.h2": "Lan-esperientzia",
+      "exp.date1": "2026 — gaur arte",
+      "exp.date2": "2026ko martxoa – maiatza",
+      "exp.title1": "Mikroinformatikaria<span>Grupo Salto</span>",
+      "exp.title2": "Praktikak — Python bidezko automatizazioa<span>Farmacia Gipuzkoa Plaza</span>",
+      "exp.title3": "Sistemen Administratzailea<span>Gizarte Segurantzaren Administrazioa</span>",
+      "exp.title4": "Web Garatzailea<span>Ibermatica</span>",
+      "exp.title5": "Sistemen Administratzailea<span>Ibermatica · Donostia</span>",
+      "exp.body1": "Mikroinformatika euskarria eta mantentze-lana: ekipoak eta erabiltzaile-postuak. 2026ko uztailaren 8an hasita.",
+      "exp.body2": "3 hilabeteko praktikak, barne-eginkizunak eta prozesuak Python script bidez automatizatuz.",
+      "exp.body3": "Erabiltzaile eta bezeroei arreta, eta ekipo informatikoen mantentze-lana.",
+      "exp.body4": "Web-aplikazio baten garapena, Spring eta Angularrekin, PostgreSQL datu-basearekin.",
+      "exp.body5": "Mantentze-planak, txostenak, eta zerbitzarien sorkuntza eta administrazioa.",
+      "proj.eyebrow": "~/proiektuak",
+      "proj.h2": "Proiektuak",
+      "proj.subtitle": "Bi edo hiru proiektu erreal gehiago konbentzitzen dute, zerrenda bateko hogei teknologiak baino.",
+      "proj.badge1": "Proiektu akademikoa",
+      "proj.badge2": "Automatizazioa",
+      "proj.title1": "Erregistroen kudeaketa — PHP + MySQL",
+      "proj.desc1": "PHP backend eta MySQL datu-basea dituen aplikazioa: erregistroak sortu, editatu, ezabatu eta zerrendatu, errore-kontrolarekin.",
+      "proj.title2": "Buscar_Labs — Laborategien bilaketa",
+      "proj.desc2": "Python script bat, Excel zerrenda bateko produktu bakoitzaren laborategia lokalizatzen duena, Gipuzkoako Foru Aldundiaren (GFA) webgunea kontsultatuz.",
+      "proj.badge3": "Ikasketa-proiektua (taldean)",
+      "proj.title3": "Erronka — Car Crashers (desguacea)",
+      "proj.desc3": "Desguace enpresa fiktizio baterako webgunea, 3 lagunetako taldean garatua, Web Aplikazioen Garapena zikloko ariketa gisa.",
+      "proj.badge4": "Proiektu pertsonala",
+      "proj.title4": "Ostalaritza TPV — Node.js + Electron",
+      "proj.desc4": "Ostalaritzarako TPV sistema: denbora errealeko mahai eta komanda kudeaketa (SSE), sukaldeko pantaila eta administrazio panela. Node.js/Express backend-a SQLite natiboarekin, PWA gisa tabletan instalagarria.",
+      "proj.viewDemo": "Demoa ikusi",
+      "proj.viewCode": "Kodea ikusi",
+      "proj.viewAllTitle": "Guztia GitHub-en ikusi",
+      "proj.viewAllDesc": "Proiektu bakoitzaren atzean dauden biltegiak eta kodea.",
+      "edu.eyebrow": "~/hezkuntza",
+      "edu.h2": "Hezkuntza eta prestakuntza",
+      "edu.title1": "Web Aplikazioen Garapena (DAW)",
+      "edu.title2": "Sareko Sistema Informatikoen Administrazioa",
+      "edu.desc2": "Zubiri Manteo",
+      "edu.title3": "Zientzia Batxilergoa",
+      "lang.eyebrow": "~/hizkuntzak",
+      "lang.h2": "Hizkuntzak",
+      "lang.eu": "Euskara",
+      "lang.es": "Gaztelania",
+      "lang.en": "Ingelesa",
+      "lang.native": "Ama-hizkuntza",
+      "lang.b1": "B1",
+      "contact.eyebrow": "~/kontaktua",
+      "contact.h2": "Kontaktatu",
+      "contact.email": "Email",
+      "contact.phone": "Telefonoa",
+      "contact.github": "GitHub",
+      "contact.linkedin": "LinkedIn",
+      "footer.updated": "azken eguneratzea · 2026ko uztaila"
+    }
+  };
+
+  var cvBtn = document.getElementById('btnPrint');
+  var CV_FILENAMES = { es: 'Agoitz_Ezkerra_CV.pdf', en: 'Agoitz_Ezkerra_CV_EN.pdf', eu: 'Agoitz_Ezkerra_CV_EU.pdf' };
+
+  function applyLanguage(lang){
+    if(!translations[lang]) return;
+    var dict = translations[lang];
+    currentLang = lang;
+    document.documentElement.setAttribute('lang', lang);
+    if(cvBtn){
+      var cvAttr = cvBtn.getAttribute('data-cv-' + lang);
+      if(cvAttr){ cvBtn.setAttribute('href', cvAttr); cvBtn.setAttribute('download', CV_FILENAMES[lang] || CV_FILENAMES.es); }
+    }
+    if(dict['meta.title']) document.title = dict['meta.title'];
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if(metaDesc && dict['meta.description']) metaDesc.setAttribute('content', dict['meta.description']);
+    var ogTitle = document.querySelector('meta[property="og:title"]');
+    if(ogTitle && dict['meta.title']) ogTitle.setAttribute('content', dict['meta.title']);
+    var ogDesc = document.querySelector('meta[property="og:description"]');
+    if(ogDesc && dict['meta.description']) ogDesc.setAttribute('content', dict['meta.description']);
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-html');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-aria');
+      if(dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+    });
+
+    var terminalEl = document.querySelector('.terminal');
+    if(terminalEl && dict['hero.terminalHint']) terminalEl.title = dict['hero.terminalHint'];
+
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      var isActive = btn.getAttribute('data-lang') === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLanguage(btn.getAttribute('data-lang')); });
+  });
+  applyLanguage('es');
+})();
+</script>
+</body>
+</html>
